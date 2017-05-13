@@ -146,7 +146,7 @@ def crack_captcha_cnn(w_alpha=0.01, b_alpha=0.1):
     b_c2 = tf.Variable(b_alpha * tf.random_normal([64]))
     conv2 = tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(conv1, w_c2, strides=[1, 1, 1, 1], padding='SAME'), b_c2))
     conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-    conv2 = tf.nn.dropout(conv2, keep_prob)
+    conv2 = tf.nn.dropout(conv2, keep_prob) # *** 可以试一下tf.contrib.layers.batch_norm
 
     w_c3 = tf.Variable(w_alpha * tf.random_normal([3, 3, 64, 64]))
     b_c3 = tf.Variable(b_alpha * tf.random_normal([64]))
